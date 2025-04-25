@@ -2,6 +2,8 @@ Cara menjalankan:
 
 - Clone repository
 - Ke terminal, ketik composer install, lalu tunggu, dan ketika selesai ketik npm install
+- Ubah file .env.example menjadi .env
+- (Opsional) ubah nama database di bagian .env menjadi yang kalian inginkan
 - Ketik php artisan key:generate
 - Jalankan laravel dengan 'php artisan serve'
 - Jalankan tailwind dengan 'npm run dev'
