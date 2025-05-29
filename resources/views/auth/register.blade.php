@@ -1,47 +1,72 @@
-@extends('layouts.main')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('content')
-<div class="flex flex-col lg:flex-row shadow-lg rounded-lg overflow-hidden w-full max-w-4xl mx-auto my-10">
-    <!-- Kiri -->
-    <div class="w-full lg:w-1/2 bg-gradient-to-br from-red-500 to-red-800 text-white flex flex-col items-center justify-center p-6 sm:p-8">
-        <h2 class="text-2xl font-bold mb-2 text-center">Halo, Sobat Telkom!</h2>
-        <p class="text-center mb-4">Together, We Lead, We Transform, We Achieve IMPACT!”</p>
-        <a href="{{ route('login') }}" class="border border-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-red-600">SIGN IN</a>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Witel Medan</title>
+    @vite('resources/css/app.css') {{-- Tailwind CSS --}}
+</head>
 
-    <!-- Form Register -->
-    <div class="w-full lg:w-1/2 bg-white p-6 sm:p-8 flex flex-col justify-between min-h-[500px]">
-        <div class="flex flex-col justify-between h-full">
-            <div class="text-center">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo Telkom Indonesia" class="h-12 mx-auto">
-                <h2 class="text-2xl font-bold mt-4">Sign Up</h2>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <!-- WRAPPER -->
+    <div class="flex flex-col items-center gap-4 w-full max-w-sm">
+
+        <!-- FORM REGISTER -->
+        <div class="bg-white p-8 rounded-lg shadow-md w-full">
+            <!-- Logo -->
+            <div class="mb-4 text-center">
+                <img src="{{ asset('assets/img/header register.png') }}" alt="Logo">
             </div>
-            <form method="POST" action="{{ route('register.process') }}" class="mt-6 space-y-4 flex-grow">
+
+            <!-- Error Message -->
+            @if ($errors->any())
+                <div class="mb-4 text-red-500 text-sm">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <!-- Form Register -->
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <div>
-                    <label class="block mb-1 font-semibold">Nama Pribadi :</label>
-                    <input type="text" name="name" class="w-full border rounded px-3 py-2" placeholder="Masukkan Nama Lengkap Anda" required>
+                <!-- Nama -->
+                <input type="text" name="name" placeholder="Nama Lengkap" required
+                    class="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500" />
+
+                <!-- Email -->
+                <input type="email" name="email" placeholder="Email Telkom" required
+                    class="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500" />
+                    
+                <!-- Password -->
+                <div class="relative mb-3">
+                    <input type="password" id="password" name="password" placeholder="Kata Sandi" required
+                        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500" />
                 </div>
 
-                <div>
-                    <label class="block mb-1 font-semibold">Email :</label>
-                    <input type="email" name="email" class="w-full border rounded px-3 py-2" placeholder="Masukkan Email Anda" required>
+                <!-- Konfirmasi Password -->
+                <div class="relative mb-4">
+                    <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Konfirmasi Kata Sandi" required
+                        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500" />
                 </div>
 
-                <div>
-                    <label class="block mb-1 font-semibold">Password :</label>
-                    <input type="password" name="password" class="w-full border rounded px-3 py-2" placeholder="Masukkan Password Anda" required>
-                </div>
-
-                <div>
-                    <label class="block mb-1 font-semibold">Ulangi Password :</label>
-                    <input type="password" name="password_confirmation" class="w-full border rounded px-3 py-2" placeholder="Masukkan Ulang Password Anda" required>
-                </div>
-
-                <button type="submit" class="w-full bg-gray-500 text-white font-bold py-2 rounded hover:bg-red-600 hover:text-white">SIGN UP</button>
+                <!-- Submit -->
+                <button type="submit"
+                    class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition duration-200">
+                    Daftar
+                </button>
             </form>
         </div>
+
+        <!-- SUDAH PUNYA AKUN -->
+        <div class="bg-white p-4 rounded-lg shadow-md w-full">
+            <div class="text-sm text-center text-gray-600">
+                Sudah punya akun? <a href="{{ route('login') }}" class="text-blue-600 hover:underline font-semibold">Masuk</a>
+            </div>
+        </div>
     </div>
-</div>
-@endsection
+
+</body>
+
+</html>

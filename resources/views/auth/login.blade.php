@@ -1,43 +1,69 @@
-@extends('layouts.main')
+<!DOCTYPE html>
+<html lang="id">
 
-@section('content')
-<div class="flex flex-col lg:flex-row shadow-lg rounded-lg overflow-hidden w-full max-w-4xl mx-auto my-10 font-gotham">
-    <!-- Form Login -->
-    <div class="w-full lg:w-1/2 bg-white p-6 sm:p-8 flex flex-col justify-between min-h-[500px]">
-        <div class="flex flex-col justify-between h-full">
-            <div class="text-center">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="Logo Telkom Indonesia" class="h-12 mx-auto">
-                <h2 class="text-2xl font-bold mt-4">Sign In</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Witel Medan</title>
+    @vite('resources/css/app.css') {{-- Tailwind CSS --}}
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <!-- WRAPPER: konten vertikal sejajar -->
+    <div class="flex flex-col items-center gap-4 w-full max-w-sm">
+
+        <!-- FORM LOGIN -->
+        <div class="bg-white p-8 rounded-lg shadow-md w-full">
+            <!-- Logo -->
+            <div class="mb-4 text-center">
+                <img src="{{ asset('assets/img/header login.png') }}" alt="Logo">
             </div>
 
-            <form method="POST" action="{{ route('login.process') }}" class="mt-6 space-y-4 flex-grow">
+            <!-- Error Message -->
+            @if ($errors->any())
+                <div class="mb-4 text-red-500 text-sm">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
+            <!-- Form -->
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <div>
-                    <label class="block mb-1 font-semibold">Email :</label>
-                    <input type="email" name="email" class="w-full border rounded px-3 py-2" placeholder="Masukkan Email Anda" required>
+                <!-- Email -->
+                <input type="email" name="email" placeholder="Email Telkom" required
+                    class="w-full mb-4 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500" />
+
+                <!-- Password -->
+                <div class="relative mb-4">
+                    <input type="password" id="password" name="password" placeholder="Kata Sandi" required
+                        class="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-red-500" />
                 </div>
 
-                <div>
-                    <label class="block mb-1 font-semibold">Password :</label>
-                    <input type="password" name="password" class="w-full border rounded px-3 py-2" placeholder="Masukkan Password" required>
-                </div>
-
-                <div class="flex items-center space-x-2">
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember">Remember me</label>
-                </div>
-
-                <button type="submit" class="w-full bg-gray-400 text-white font-bold py-2 rounded hover:bg-red-600 hover:text-white">Login</button>
+                <!-- Submit Button -->
+                <button type="submit"
+                    class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition duration-200">
+                    Masuk
+                </button>
             </form>
+
+            <!-- Lupa Password -->
+            <div class="text-sm text-center mt-4 text-gray-600">
+                Lupa Kata Sandi? <a href="forgot" class="text-blue-600 hover:underline font-semibold">Klik disini</a>
+            </div>
+        </div>
+
+        <!-- DAFTAR -->
+        <div class="bg-white p-4 rounded-lg shadow-md w-full">
+            <div class="text-sm text-center text-gray-600">
+                Belum punya akun? <a href="register" class="text-blue-600 hover:underline font-semibold">Daftar</a>
+            </div>
         </div>
     </div>
 
-    <!-- Kanan -->
-    <div class="w-full lg:w-1/2 bg-gradient-to-br from-red-500 to-red-800 text-white flex flex-col items-center justify-center p-6 sm:p-8">
-        <h2 class="text-2xl font-bold mb-2 text-center">Halo, Sobat Telkom!</h2>
-        <p class="text-center mb-4">Daftarkan diri anda dan mulai gunakan layanan kami segera</p>
-        <a href="{{ route('register') }}" class="border border-white px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-red-600">SIGN UP</a>
-    </div>
-</div>
-@endsection
+   
+
+</body>
+
+</html>

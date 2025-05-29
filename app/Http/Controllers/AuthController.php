@@ -21,6 +21,13 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    
+    // Tampilkan halaman lupa password
+    public function showForgotForm()
+    {
+        return view('auth.forgot');
+    }
+
     // LOGIN HANDLER
     public function login(Request $request)
     {
