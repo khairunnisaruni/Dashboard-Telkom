@@ -13,4 +13,6 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 Route::get('/forgot', [AuthController::class, 'showforgotForm'])->name('forgot'); // Halaman forgot
 Route::post('/forgot', [AuthController::class, 'forgot'])->name('forgot.process');
 
+Route::get('/tes', [AuthController::class,'showTes'])->name('tes'); // Halaman tes
+
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

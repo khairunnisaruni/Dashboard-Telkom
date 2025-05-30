@@ -15,6 +15,7 @@
 
         <!-- FORM LOGIN -->
         <div class="bg-white p-8 rounded-lg shadow-md w-full">
+            
             <!-- Logo -->
             <div class="mb-4 text-center">
                 <img src="{{ asset('assets/img/header login.png') }}" alt="Logo">
