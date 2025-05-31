@@ -49,6 +49,5 @@
                 <span class="text-lg font-bold">Guest</span>
             @endif
         </div>
-
     </div>
 </header>
