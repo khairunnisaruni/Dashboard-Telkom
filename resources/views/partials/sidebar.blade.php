@@ -1,5 +1,5 @@
 <aside id="sidebar"
-    class="fixed inset-y-0 left-0 z-30 w-64 bg-white shadow-md p-6 transition-transform duration-300 transform -translate-x-full md:translate-x-0 md:static md:inset-auto md:z-auto md:block">
+    class="fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-md p-6 md:block transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
     <button id="closeSidebarBtn"
         class="absolute top-4 right-4 text-4xl text-gray-500 hover:text-red-600 focus:outline-none md:hidden"
         aria-label="Close Sidebar">
@@ -11,9 +11,9 @@
     <nav class="space-y-2">
         <ul class="space-y-4 mt-8">
             <li>
-                <a href="{{ route('tes') }}"
+                <a href="{{ route('dashboard') }}"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('tes') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('dashboard') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-home"></i><span>Home</span>
                 </a>
             </li> 

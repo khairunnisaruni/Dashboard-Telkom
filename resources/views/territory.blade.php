@@ -18,10 +18,15 @@
 }
 </style>
 
-<main class="p-4 md:p-6">
-    <h1 class="text-3xl font-bold mb-8">Territory Overview</h1>
-
+<main class="flex-1 flex flex-col m-4 pt-24 md:ml-64 md:pt-16">
+<span class="text-xl font-bold text-gray-800 ml-4 mt-4 md:mt-20 md:mb-4 md:text-3xl">Territory Overview</span>
     <div class="flex flex-col md:flex-row gap-6">
+      {{-- Territory Map --}}
+        <div class="bg-white rounded-lg shadow p-6 md:w-3/5 max-w-xl mx-auto">
+            <h2 class="font-bold text-lg mb-4 text-center">Wilayah Telekomunikasi Sumatera Utara</h2>
+            <img src="{{ asset('assets/img/sumut-map.png') }}" alt="Peta Telekomunikasi Sumatera Utara" class="w-full max-w-md mx-auto rounded-md" />
+        </div>
+        
         {{-- Territory List --}}
         <div class="bg-white rounded-lg shadow p-6 md:w-2/5 max-h-[600px] overflow-y-auto md:ml-6">
             @foreach ($territories as $key => $territory)
@@ -38,11 +43,7 @@
             @include('partials.modal-territory', ['territory' => $territory, 'modalId' => $key.'-modal'])
         @endforeach
 
-        {{-- Territory Map --}}
-        <div class="bg-white rounded-lg shadow p-6 md:w-3/5 max-w-xl mx-auto">
-            <h2 class="font-bold text-lg mb-4 text-center">Wilayah Telekomunikasi Sumatera Utara</h2>
-            <img src="{{ asset('assets/img/sumut-map.png') }}" alt="Peta Telekomunikasi Sumatera Utara" class="w-full max-w-md mx-auto rounded-md" />
-        </div>
+        
     </div>
 </main>
 

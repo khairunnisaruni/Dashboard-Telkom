@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TerritoryController;
 use App\Http\Controllers\OCCController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -38,3 +39,6 @@ Route::post('/occ/upload', [OCCController::class, 'upload'])->name('occ.modal-up
 // Resource Routes
 Route::get('/resource', [ResourceController::class,'showResource'])->name('resource');
 Route::post('/resource/upload', [ResourceController::class, 'upload'])->name('resource.modal-upload');
+
+// Dashboard Routes
+Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
