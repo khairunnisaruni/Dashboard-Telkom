@@ -16,11 +16,13 @@
                         {{ request()->is('tes') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-home"></i><span>Home</span>
                 </a>
-            </li>
-         
-            <li
-                class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold rounded-lg cursor-pointer">
-                <i class="fas fa-map-marked-alt"></i><span>Territory</span>
+            </li> 
+            <li>
+                <a href="{{ route('territory') }}"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg 
+                        {{ request()->is('territory') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold'}}">
+                    <i class="fas fa-map-marked-alt"></i><span>Territory</span>
+                </a>
             </li>
            <li>
                 <a href="{{ route('occ') }}"
