@@ -18,7 +18,7 @@
                 <div>
                     <label for="name" class="block text-sm font-semibold text-red-600 mb-1">Nama Lengkap</label>
                     <input type="text" id="name" name="name" value="{{ Auth::check() ? Auth::user()->name : 'Guest' }}"
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-red-400 @if (!Auth::check()) cursor-not-allowed disabled:bg-gray-100 @endif" 
+                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-red-400 @if (!Auth::check()) cursor-not-allowed disabled:bg-gray-100 text-gray-500 @endif" 
                         @if (!Auth::check()) disabled @endif />
                 </div>
                 <div>
