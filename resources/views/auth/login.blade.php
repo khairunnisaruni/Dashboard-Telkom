@@ -15,6 +15,7 @@
 
         <!-- FORM LOGIN -->
         <div class="bg-white p-8 rounded-lg shadow-md w-full">
+            
             <!-- Logo -->
             <div class="mb-4 text-center">
                 <img src="{{ asset('assets/img/header login.png') }}" alt="Logo">
@@ -27,8 +28,15 @@
                 </div>
             @endif
 
+            <!-- Show flash message -->
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <!-- Form -->
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="/login">
                 @csrf
 
                 <!-- Email -->
@@ -62,8 +70,5 @@
         </div>
     </div>
 
-   
-
 </body>
-
 </html>
