@@ -10,7 +10,7 @@ use App\Models\User;
 class AuthController extends Controller
 {
     // Tampilkan halaman login
-    public function index()
+    public function showLoginForm()
     {
         return view('auth.login');
     }
@@ -21,6 +21,8 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+
+
      // Tampilkan halaman register
     public function showTes()
     {
@@ -28,6 +30,7 @@ class AuthController extends Controller
     }
 
     
+
     // Tampilkan halaman lupa password
     public function showForgotForm()
     {
@@ -60,7 +63,7 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:100',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:8|confirmed',
         ]);
 
         User::create([

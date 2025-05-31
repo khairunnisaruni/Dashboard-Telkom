@@ -28,8 +28,15 @@
                 </div>
             @endif
 
+            <!-- Show flash message -->
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <!-- Form -->
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="/login">
                 @csrf
 
                 <!-- Email -->
@@ -63,8 +70,5 @@
         </div>
     </div>
 
-   
-
 </body>
-
 </html>
