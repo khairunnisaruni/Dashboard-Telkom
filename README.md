@@ -10,7 +10,7 @@ Cara menjalankan:
 
 Note: 
 - Jangan push apapun ke main, ketika telah selesai melakukan slicing / modeling dll, up ke branch dan buka pull request
+- Berikan notifikasi di trello apabila pull request (PR) telah dibuka, dengan cara memindahkan TODO kalian ke bagian code review
 - Apabila telah selesai, semua pihak harus melakukan pull dari main. 
 
 Have fun coding :>
-

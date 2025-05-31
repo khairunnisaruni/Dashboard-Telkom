@@ -21,6 +21,16 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+
+
+     // Tampilkan halaman register
+    public function showTes()
+    {
+        return view('tes');
+    }
+
+    
+
     // Tampilkan halaman lupa password
     public function showForgotForm()
     {
