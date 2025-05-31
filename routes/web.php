@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OCCController;
+use App\Http\Controllers\ResourceController;
+
 
 Route::get('/', function() {
     return redirect('/login');
@@ -20,3 +23,9 @@ Route::post('/forgot', [AuthController::class, 'forgot'])->name('forgot.process'
 Route::get('/tes', [AuthController::class,'showTes'])->name('tes'); // Halaman tes
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/occ', [OCCController::class,'showOCC'])->name('occ');
+Route::post('/occ/upload', [OccController::class, 'upload'])->name('occ.modal-upload');
+
+Route::get('/resource', [ResourceController::class,'showResource'])->name('resource');
+Route::post('/resource/upload', [ResourceController::class, 'upload'])->name('resource.modal-upload');

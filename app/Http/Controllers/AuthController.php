@@ -28,7 +28,6 @@ class AuthController extends Controller
     {
         return view('tes');
     }
-
     
 
     // Tampilkan halaman lupa password

@@ -4,27 +4,33 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Telkom Dashboard</title>
+    <title>Dashboard Telkom</title>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    @vite('resources/css/app.css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
     @stack('styles') {{-- Untuk menambahkan CSS spesifik per halaman --}}
 </head>
 
 <body class="bg-gray-100 font-sans">
     <div class="flex min-h-screen">
-        @include('partials._sidebar')
+        @include('partials.sidebar')
 
         <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 z-20 hidden md:hidden"></div>
 
         <main class="flex-1 flex flex-col">
-            @include('partials._header')
+            @include('partials.header')
 
             {{-- Konten utama halaman akan disuntikkan di sini --}}
             @yield('content')
         </main>
     </div>
 
-    @include('partials._modals')
+    @include('partials.modals')
 
     <script>
         // JavaScript global yang mungkin dibutuhkan oleh partials
