@@ -43,7 +43,12 @@
             <img src="{{ asset('assets/img/profile.png') }}" alt="Profile" />
         </button>
         <div class="hidden md:flex items-center space-x-4">
-            <span class="text-lg font-bold">Agung</span>
+            @if (Auth::check())
+                <span class="text-lg font-bold">{{ Auth::user()->name }}</span>
+            @else
+                <span class="text-lg font-bold">Guest</span>
+            @endif
         </div>
+
     </div>
 </header>

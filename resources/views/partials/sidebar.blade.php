@@ -56,10 +56,14 @@
                 <i class="fas fa-info-circle"></i><span>About Us</span>
             </li>
             <li class="py-4"></li>
-            <li
-                class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer">
-                <i class="fas fa-sign-out-alt"></i><span>Log Out</span>
-            </li>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit"
+                    class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer w-full text-left">
+                    <i class="fas fa-sign-out-alt"></i><span>Log Out</span>
+                </button>
+            </form>
+
         </ul>
     </nav>
 </aside>
