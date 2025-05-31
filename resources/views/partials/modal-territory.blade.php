@@ -6,8 +6,9 @@
       {{-- Left side: Map and Title --}}
       <div class="md:w-1/3 text-center">
         <h2 class="text-3xl font-extrabold mb-4">{{ $territory['name'] }}</h2>
-        <img src="{{ asset($territory['map_image']) }}" alt="Peta wilayah {{ $territory['name'] }}" class="rounded-lg shadow-lg mx-auto max-h-[400px] w-auto" />
+        <img src="{{ asset($territory['map_image']) }}" alt="Peta wilayah {{ $territory['name'] }}" class="rounded-lg shadow-lg mx-auto max-h-[400px] w-auto mt-6" />
       </div>
+
 
       {{-- Right side: Detail sections --}}
       <div class="md:w-2/3">
