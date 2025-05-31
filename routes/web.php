@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TerritoryController;
 
 //Login Register
 Route::get('/', [AuthController::class, 'index'])->name('login'); // Halaman login
@@ -14,3 +15,7 @@ Route::get('/forgot', [AuthController::class, 'showforgotForm'])->name('forgot')
 Route::post('/forgot', [AuthController::class, 'forgot'])->name('forgot.process');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/territory', [TerritoryController::class, 'index'])->name('territory');
+
+?>
