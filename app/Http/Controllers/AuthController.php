@@ -21,14 +21,11 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-
-
      // Tampilkan halaman register
     public function showTes()
     {
         return view('tes');
     }
-    
 
     // Tampilkan halaman lupa password
     public function showForgotForm()
@@ -48,7 +45,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return redirect()->intended('/occ'); // Temporary redirect to OCC
         }
 
         return back()->withErrors([
@@ -72,6 +69,20 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
+    }
+
+    public function updateName(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+        ]);
+
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Nama berhasil diperbarui!');
     }
 
     // LOGOUT HANDLER
