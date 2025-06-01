@@ -7,7 +7,7 @@
     </div>
 
     <div class="flex items-center space-x-4">
-        <div class="relative">
+        <div class="relative flex items-center">
             <button id="notifBtn" class="w-10 md:w-12 h-auto relative" aria-label="Notifications">
                 <img id="notifIcon" src="{{ asset('assets/img/notifikasi.png') }}" alt="Notif" />
             </button>
@@ -50,6 +50,22 @@
             @else
                 <span class="text-lg font-bold">Guest</span>
             @endif
+            @if (session('success'))
+                <div id="successMessage" class="top-full right-6 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded shadow">
+                    {{ session('success') }}
+                </div>
+            @endif
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.classList.add('hidden');
+                }, 3000);
+            }
+        });
+    </script>
 </header>
