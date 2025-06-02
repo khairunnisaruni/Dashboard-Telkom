@@ -6,6 +6,7 @@ use App\Http\Controllers\TerritoryController;
 use App\Http\Controllers\OCCController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OpportunityController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -42,3 +43,8 @@ Route::post('/resource/upload', [ResourceController::class, 'upload'])->name('re
 
 // Dashboard Routes
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+
+// Opportunity Routes
+Route::get('/opportunity', [OpportunityController::class, 'showOpportunity'])->name('opportunity');
+Route::post('/opportunity/upload', [OpportunityController::class, 'upload'])->name('opportunity.modal-upload');
+Route::post('/opportunity/update', [OpportunityController::class, 'update'])->name('opportunity.modal-update');
