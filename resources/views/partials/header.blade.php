@@ -1,7 +1,7 @@
 <header class="fixed top-0 left-0 w-full z-40 bg-white shadow px-6 py-6 flex items-center justify-between">
     <div class="flex items-center space-x-4 px-2 md:ml-64">
         <button id="menuBtn" class="text-3xl focus:outline-none md:hidden">&#9776;</button>
-        <a href="{{ url('login') }}" class="flex items-center space-x-2" aria-label="Go to Home">
+        <a href="{{ url('dashboard') }}" class="flex items-center space-x-2" aria-label="Go to Home">
             <img src="{{ asset('assets/img/logo witel sumut.png') }}" class="w-28 md:w-32 h-auto" alt="Logo Witel Sumut">
         </a>
     </div>
