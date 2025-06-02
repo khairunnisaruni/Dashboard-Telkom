@@ -8,7 +8,7 @@ class ResourceController extends Controller
 {
     public function showResource()
     {
-        return view('resource.resource'); // pastikan folder view dan nama file benar
+        return view('resource'); // pastikan folder view dan nama file benar
     }
 
     public function upload(Request $request)

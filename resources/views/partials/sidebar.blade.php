@@ -39,9 +39,12 @@
                     <span>Opportunity</span>
                 </a>
             </li>
-            <li
-                class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer">
-                <i class="fas fa-users"></i><span>Customer Base</span>
+            <li>
+                <a href="{{ route('customerbase') }}"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg
+                        {{ request()->is('customerbase') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                    <i class="fas fa-users"></i><span>Customer Base</span>
+                </a>
             </li>
             <li>
                 <a href="{{ route('resource') }}"
@@ -54,10 +57,14 @@
                 class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer">
                 <i class="fas fa-tasks"></i><span>Plans</span>
             </li>
-            <li
-                class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer">
-                <i class="fas fa-info-circle"></i><span>About Us</span>
+            <li>
+                <a href="{{ route('about') }}"
+                 class="flex items-center gap-3 px-4 py-2 rounded-lg
+                        {{ request()->is('about') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                    <i class="fas fa-info-circle"></i><span>About Us</span>
+                </a>
             </li>
+           
             <li class="py-4"></li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf

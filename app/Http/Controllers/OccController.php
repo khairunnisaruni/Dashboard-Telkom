@@ -8,7 +8,7 @@ class OccController extends Controller
 {
     public function showOCC()
     {
-        return view('occ.occ'); // pastikan folder view dan nama file benar
+        return view('occ'); // pastikan folder view dan nama file benar
     }
 
     public function upload(Request $request)

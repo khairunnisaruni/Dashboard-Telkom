@@ -18,9 +18,10 @@
 }
 </style>
 
-<main class="flex-1 flex flex-col m-4 pt-24 md:ml-64 md:pt-16">
-<span class="text-xl font-bold text-gray-800 ml-4 mt-4 md:mt-20 md:mb-4 md:text-3xl">Territory Overview</span>
-    <div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 flex flex-col pt-24 md:ml-64 md:pt-16">
+                <span class="text-xl font-bold text-gray-800 ml-4 mt-4 md:mt-20 md:mb-4 md:text-3xl">Territory Overview</span>
+
+    <div class="flex flex-col md:flex-row gap-6 md:space-x-4 m-4">
       {{-- Territory Map --}}
         <div class="bg-white rounded-lg shadow p-6 md:w-3/5 max-w-xl mx-auto">
             <h2 class="font-bold text-lg mb-4 text-center">Wilayah Telekomunikasi Sumatera Utara</h2>
