@@ -42,7 +42,7 @@
             <li>
                 <a href="{{ route('customerbase') }}"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('customerbase') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('cbase') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-users"></i><span>Customer Base</span>
                 </a>
             </li>

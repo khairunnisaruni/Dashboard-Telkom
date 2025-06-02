@@ -83,6 +83,7 @@
                 class="border-dashed border-2 border-gray-300 rounded-lg flex flex-col items-center justify-center p-6 text-gray-600 text-sm text-center hover:border-blue-400 cursor-pointer">
                 @csrf
                 <input type="file" name="file" class="hidden" id="uploadFile" onchange="this.form.submit()">
+                <input type="hidden" name="subcategory" :value="selectedCategory" />
                 <label for="uploadFile" class="flex flex-col items-center cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 12V4m0 0L8 8m4-4l4 4" />
@@ -105,6 +106,7 @@
             selectedCategory: '',
             showModal(category) {
                 this.selectedCategory = category;
+                console.log('Selected Category:', this.selectedCategory);
                 this.modalOpen = true;
             }
         }));
