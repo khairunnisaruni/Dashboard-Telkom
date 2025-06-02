@@ -31,10 +31,13 @@
                     <i class="fas fa-chart-bar"></i><span>OCC & Idle Port</span>
                 </a>
             </li>
-
-            <li
-                class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer">
-                <i class="fas fa-bullseye"></i><span>Opportunity</span>
+            <li>
+                <a href="{{ route('opportunity') }}"
+                class="flex items-center gap-3 px-4 py-2 rounded-lg
+                        {{ request()->is('opportunity') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Opportunity</span>
+                </a>
             </li>
             <li>
                 <a href="{{ route('customerbase') }}"
