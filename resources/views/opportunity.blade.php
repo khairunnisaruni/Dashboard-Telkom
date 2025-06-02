@@ -351,9 +351,6 @@
     </main>
 </div>
 
-{{-- Footer --}}
-@include('partials.footer')
-
 <style>
     [x-cloak] { display: none !important; }
 </style>
