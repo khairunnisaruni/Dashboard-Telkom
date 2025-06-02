@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -65,7 +66,7 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
-    public function updateName(Request $request)
+    public function updateProfile(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:100',
@@ -73,10 +74,20 @@ class AuthController extends Controller
 
         /** @var \App\Models\User $user */
         $user = Auth::user();
+        
+        if ($request->hasFile('profile_pic')) {
+            if ($user->profile_picture && Storage::disk('public')->exists($user->profile_picture)) {
+                Storage::disk('public')->delete($user->profile_picture);
+            }
+
+            $path = $request->file('profile_pic')->store('user/profilepicture', 'public');
+            $user->profile_picture = $path;
+        }
+
         $user->name = $request->name;
         $user->save();
 
-        return redirect()->back()->with('success', 'Nama berhasil diperbarui!');
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
     }
 
     // LOGOUT HANDLER
