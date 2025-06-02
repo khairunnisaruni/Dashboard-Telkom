@@ -21,12 +21,6 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-     // Tampilkan halaman register
-    public function showTes()
-    {
-        return view('tes');
-    }
-
     // Tampilkan halaman lupa password
     public function showForgotForm()
     {
@@ -45,7 +39,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/occ'); // Temporary redirect to OCC
+            return redirect()->intended('/dashboard');
         }
 
         return back()->withErrors([
