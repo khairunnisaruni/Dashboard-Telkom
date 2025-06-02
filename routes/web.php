@@ -6,6 +6,7 @@ use App\Http\Controllers\TerritoryController;
 use App\Http\Controllers\OCCController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CbaseController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -35,6 +36,10 @@ Route::get('/territory', [TerritoryController::class, 'index'])->name('territory
 // OCC Routes
 Route::get('/occ', [OCCController::class,'showOCC'])->name('occ');
 Route::post('/occ/upload', [OCCController::class, 'upload'])->name('occ.modal-upload');
+
+// Cbase routes
+Route::get('/cbase', [CbaseController::class,'showCbase'])->name('customerbase');
+Route::post('/cbase/upload', [CbaseController::class, 'upload'])->name('customerbase.modal-upload');
 
 // Resource Routes
 Route::get('/resource', [ResourceController::class,'showResource'])->name('resource');

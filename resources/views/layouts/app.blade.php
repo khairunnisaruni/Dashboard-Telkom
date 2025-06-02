@@ -27,11 +27,12 @@
 
             {{-- Konten utama halaman akan disuntikkan di sini --}}
             @yield('content')
-            @include('partials.footer')
+           
 
             {{-- Jika ada notifikasi, tampilkan di sini --}}
         </main>
     </div>
+     @include('partials.footer')
 
     @include('partials.modals')
 

@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class OccController extends Controller
+class CbaseController extends Controller
 {
-    public function showOCC()
+    public function showCbase()
     {
-        return view('occ'); // pastikan folder view dan nama file benar
+        return view('customerbase'); // pastikan folder view dan nama file benar
     }
 
     public function upload(Request $request)
