@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="p-4 md:p-6" x-data="{ showUploadModal: false }">
-    <h1 class="text-xl md:text-2xl font-bold mb-4">Resource </h1>
+<div x-data="{ showUploadModal: false }" class="flex-1 flex flex-col pt-24 md:ml-64 md:pt-16">
+                <span class="text-xl font-bold text-gray-800 ml-4 mt-4 md:mt-20 md:mb-4 md:text-3xl">Resource</span>
 
-    <div class="bg-white shadow rounded-lg overflow-hidden">
+    <div class="bg-white shadow rounded-lg overflow-hidden md:flex-row md:space-x-4 m-4">
         {{-- Top controls --}}
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-4 border-b">
 
