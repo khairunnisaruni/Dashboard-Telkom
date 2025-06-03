@@ -13,28 +13,28 @@
             <li>
                 <a href="{{ route('dashboard-user') }}"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('dashboard') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('dashboard-user') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-home"></i><span>Home</span>
                 </a>
             </li> 
             <li>
                 <a href="{{ route('territory-user') }}"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg 
-                        {{ request()->is('territory') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold'}}">
+                        {{ request()->is('territory-user') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold'}}">
                     <i class="fas fa-map-marked-alt"></i><span>Territory</span>
                 </a>
             </li>
            <li>
                 <a href="{{ route('occ-user') }}"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('occ') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('occ-user') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-chart-bar"></i><span>OCC & Idle Port</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('opportunity-user') }}"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('opportunity') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('opportunity-user') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-bullseye"></i>
                     <span>Opportunity</span>
                 </a>
@@ -42,14 +42,14 @@
             <li>
                 <a href="{{ route('customerbase-user') }}"
                 class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('cbase') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('cbase-user') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-users"></i><span>Customer Base</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('resource-user') }}"
                  class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('resource') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('resource-user') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-archive"></i><span>Resource</span>
                 </a>
             </li>
@@ -60,7 +60,7 @@
             <li>
                 <a href="{{ route('about-user') }}"
                  class="flex items-center gap-3 px-4 py-2 rounded-lg
-                        {{ request()->is('about') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
+                        {{ request()->is('about-user') ? 'text-red-600 font-bold bg-red-100' : 'text-gray-700 hover:bg-red-100 hover:text-red-600 hover:font-bold' }}">
                     <i class="fas fa-info-circle"></i><span>About Us</span>
                 </a>
             </li>

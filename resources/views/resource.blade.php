@@ -1,23 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-<div x-data="{ showUploadModal: false }" class="flex-1 flex flex-col pt-24 md:ml-64 md:pt-16">
-                <span class="text-xl font-bold text-gray-800 ml-4 mt-4 md:mt-20 md:mb-4 md:text-3xl">Resource</span>
+<div class="flex min-h-screen" x-data="{ showUploadModal: false }">
+    <main class="flex-1 flex flex-col pt-24 md:ml-64 md:pt-16 p-6">
 
-    <div class="bg-white shadow rounded-lg overflow-hidden md:flex-row md:space-x-4 m-4">
-        {{-- Top controls --}}
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-4 border-b">
+        <h1 class="text-3xl font-bold mb-6" style="margin-top: 60px;">Resource</h1>
 
-            <div x-data="{ open: false }" class="relative">
-                <button @click="open = !open" class="text-sm text-gray-600 flex items-center">
-                     All data ▼
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-4">
+            {{-- Dropdown Filter --}}
+            <div x-data="{ open: false }" class="relative inline-block text-left">
+                <button @click="open = !open" 
+                    class="flex items-center px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-100 text-sm font-semibold">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    All data
                 </button>
-                <ul x-show="open" @click.away="open = false"
-                    class="absolute z-10 mt-2 bg-white border rounded shadow text-sm w-32">
+                <ul x-show="open" @click.away="open = false" 
+                    class="absolute z-10 mt-2 bg-white border rounded shadow text-sm w-48">
                     <li><a href="?filter=all" class="block px-4 py-2 hover:bg-gray-100">All data</a></li>
                     <li><a href="?filter=AM" class="block px-4 py-2 hover:bg-gray-100">Account Manager</a></li>
                     <li><a href="?filter=mitra-agensi" class="block px-4 py-2 hover:bg-gray-100">Mitra Agensi</a></li>
-                    <li><a href="?filter=sales-asistant" class="block px-4 py-2 hover:bg-gray-100">Sales Asistant</a></li>
+                    <li><a href="?filter=sales-asistant" class="block px-4 py-2 hover:bg-gray-100">Sales Assistant</a></li>
                     <li><a href="?filter=AP" class="block px-4 py-2 hover:bg-gray-100">Account Representative</a></li>
                     <li><a href="?filter=mitra-PM" class="block px-4 py-2 hover:bg-gray-100">Mitra PM</a></li>
                     <li><a href="?filter=head-of-telda" class="block px-4 py-2 hover:bg-gray-100">Head of Telda</a></li>
@@ -25,28 +29,37 @@
                 </ul>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-2">
-                <input type="text" placeholder="Search" class="px-3 py-1 border rounded text-sm w-full sm:w-auto">
-                <button @click="showUploadModal = true"
-                    class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600 text-sm w-full sm:w-auto">
+            {{-- Tools --}}
+            <div class="flex items-center space-x-4">
+                {{-- Search --}}
+                <div class="flex items-center space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M9.5 17a7.5 7.5 0 100-15 7.5 7.5 0 000 15z" />
+                    </svg>
+                    <input type="text" placeholder="Search..." 
+                        class="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-red-600" />
+                </div>
+
+                {{-- Upload --}}
+                <button @click="showUploadModal = true" 
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md text-sm font-semibold">
                     + Upload
                 </button>
             </div>
         </div>
 
-        {{-- Responsive table --}}
+        {{-- Table --}}
         <div class="overflow-x-auto">
-            <table class="min-w-full text-sm text-left">
+            <table class="min-w-full border-collapse border border-gray-300 text-sm text-left bg-white">
                 <thead class="bg-red-600 text-white">
                     <tr>
-                        <th class="px-4 py-2 font-semibold whitespace-nowrap">Telkom Daerah</th>
-                        <th class="px-4 py-2 font-semibold whitespace-nowrap">Nama</th>
-                        <th class="px-4 py-2 font-semibold whitespace-nowrap">Jabatan</th>
-                        <th class="px-4 py-2 font-semibold whitespace-nowrap">Last Updated</th>
-
+                        <th class="px-5 py-3 border-b border-red-700 font-semibold">Telkom Daerah</th>
+                        <th class="px-5 py-3 border-b border-red-700 font-semibold">Nama</th>
+                        <th class="px-5 py-3 border-b border-red-700 font-semibold">Jabatan</th>
+                        <th class="px-5 py-3 border-b border-red-700 font-semibold">Last Updated</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-700">
+                <tbody class="text-gray-800">
                     @php
                         $rows = [
                             'Binjai','Lubuk Pakam','Siantar','Inner Sumut','Kabanjahe','Kisaran',
@@ -55,19 +68,19 @@
                         ];
                     @endphp
                     @foreach ($rows as $row)
-                    <tr class="border-t hover:bg-gray-50">
-                        <td class="px-4 py-2 whitespace-nowrap">{{ $row }}</td>
-                        <td class="px-4 py-2 whitespace-nowrap">Khairunnisa</td>
-                        <td class="px-4 py-2 whitespace-nowrap">Mitra Agensi</td>
-                        <td class="px-4 py-2 whitespace-nowrap">24/02/2024 00:00</td>
+                    <tr class="hover:bg-gray-50 border-b border-gray-300">
+                        <td class="px-5 py-3">{{ $row }}</td>
+                        <td class="px-5 py-3">Khairunnisa</td>
+                        <td class="px-5 py-3">Mitra Agensi</td>
+                        <td class="px-5 py-3 text-gray-500">24/02/2024 00:00</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-    </div>
+    </main>
 
-    <!-- Upload Modal -->
+    {{-- Upload Modal --}}
     <div x-show="showUploadModal" x-cloak class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
         <div class="bg-white w-full max-w-xl rounded-lg p-6 shadow-lg relative">
             <!-- Close Button -->
@@ -76,7 +89,7 @@
             </button>
 
             <h2 class="text-lg font-bold mb-1">Resource <span class="text-blue-500 text-sm ml-2">› Upload</span></h2>
-            <p class="text-sm text-gray-600 mb-4">Mohon Unggah file CSV/Excel sesuai format yang ditentukan</p>
+            <p class="text-sm text-gray-600 mb-4">Silakan unggah file CSV/Excel sesuai format untuk kategori ini.</p>
 
             <!-- Upload Form -->
             <form method="POST" action="{{ route('resource.modal-upload') }}" enctype="multipart/form-data"
@@ -92,8 +105,7 @@
             </form>
         </div>
     </div>
-
-</main>
+</div>
 
 <style>
     [x-cloak] { display: none !important; }

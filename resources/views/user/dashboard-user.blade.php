@@ -24,7 +24,6 @@
                     <a href="/territory-user"
                         class="card-button p-4 bg-white shadow-md rounded-lg mb-4 md:mb-0 md:w-1/2 block">
                         <span class="text-xl font-semibold text-red-600">Territory Overview</span>
-                        <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                         <div class="flex items-center justify-between mt-4">
                             <img src="{{ asset('assets/img/telkom-sumut-map.jpg') }}" alt="Telkom Sumut Map"
                                 class="max-w-full h-auto">
@@ -35,7 +34,6 @@
                     <a href="/occ-user" class="card-button p-4 bg-white shadow-md rounded-lg md:w-1/2 block">
 
                         <span class="text-xl font-semibold text-red-600">OCC and Idle Port</span>
-                          <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                         <div class="overflow-x-auto mt-4">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-red-100">
@@ -126,7 +124,6 @@
 
                 <a href="/opportunity-user" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
                     <span class="text-xl font-semibold text-red-600">Opportunity</span>
-                      <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                     <div class="mt-4">
                         <table class="w-full table-auto divide-y divide-gray-200 text-sm">
                             <thead class="bg-red-100">
@@ -205,7 +202,6 @@
 
                 <a href="/cbase-user" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
                     <span class="text-xl font-semibold text-red-600">Customer Base</span>
-                      <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                     <div class="mt-4">
                         <table class="min-w-full text-sm text-left">
                             <thead class="bg-red-100">
@@ -255,7 +251,6 @@
 
                 <a href="/resource-user" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
                     <span class="text-xl font-semibold text-red-600">Resource</span>
-                      <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                     <div class="overflow-x-auto mt-4">
                         <table class="min-w-full divide-y divide-gray-200">
                             <tbody class="bg-white divide-y divide-gray-200">
