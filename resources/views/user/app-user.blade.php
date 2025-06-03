@@ -34,7 +34,7 @@
     </div>
      @include('partials.footer')
 
-    <!-- @include('partials.modals') -->
+    @include('partials.modals')
 
     <script>
         // JavaScript global yang mungkin dibutuhkan oleh partials

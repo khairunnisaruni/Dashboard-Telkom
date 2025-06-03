@@ -3,9 +3,7 @@
 @section('content')
 <div class="flex min-h-screen">
 
-    {{-- Sidebar --}}
-    @include('partials.sidebar')
-
+    
     {{-- Overlay untuk sidebar mobile --}}
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 z-20 hidden md:hidden"></div>
 
@@ -13,9 +11,7 @@
     <main class="flex-1 flex flex-col pt-24 md:ml-64 md:pt-16 p-6" 
           x-data="{ showOpportunityModal: false, showSimpanModal: false, showSimpanBerhasilModal: false, editMode: false, showHapusModal: false, showHapusBerhasilModal: false, showEditOpportunityModal : false }">
 
-        {{-- Header Navbar --}}
-        @include('partials.header')
-
+     
         {{-- Judul halaman --}}
         <h1 class="text-3xl font-bold mb-6" style="margin-top: 60px;">Opportunity</h1>
 
@@ -28,9 +24,6 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
                 <span>All data</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
             </div>
 
             {{-- Right side: Sort, Search, Upload, Edit Mode --}}
