@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Helpers\RedirectHelper;
 
 class AuthController extends Controller
 {
@@ -40,7 +41,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            return RedirectHelper::to('dashboard');
         }
 
         return back()->withErrors([
@@ -63,7 +64,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login');
     }
 
     public function updateProfile(Request $request)
@@ -87,7 +88,7 @@ class AuthController extends Controller
         $user->name = $request->name;
         $user->save();
 
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui');
     }
 
     // LOGOUT HANDLER

@@ -43,6 +43,6 @@ class OccController extends Controller
             'file_path' => $path,
         ]);
 
-        return redirect()->back()->with('success', 'File berhasil diupload!');
+        return redirect()->back()->with('success', 'File berhasil diupload');
     }
 }
