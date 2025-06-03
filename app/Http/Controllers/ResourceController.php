@@ -12,6 +12,11 @@ class ResourceController extends Controller
         return view('resource'); // pastikan folder view dan nama file benar
     }
 
+    public function showResourceUser()
+    {
+        return view('user.resource-user'); // pastikan folder view dan nama file benar
+    }
+
     public function upload(Request $request)
     {
         $request->validate([

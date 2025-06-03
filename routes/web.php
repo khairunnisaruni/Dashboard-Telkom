@@ -32,26 +32,33 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Territory Routes
 Route::get('/territory', [TerritoryController::class, 'index'])->name('territory');
+Route::get('/territory-user', [TerritoryController::class, 'indexUser'])->name('territory-user');
 
 // Territory Routes
 Route::get('/about', [AboutController::class, 'showAbout'])->name('about');
+Route::get('/about-user', [AboutController::class, 'showAboutUser'])->name('about-user');
 
 // OCC Routes
 Route::get('/occ', [OCCController::class,'showOCC'])->name('occ');
+Route::get('/occ-user', [OCCController::class,'showOCCUser'])->name('occ-user');
 Route::post('/occ/upload', [OCCController::class, 'upload'])->name('occ.modal-upload');
 
 // Cbase routes
 Route::get('/cbase', [CbaseController::class,'showCbase'])->name('customerbase');
+Route::get('/cbase-user', [CbaseController::class,'showCbaseUser'])->name('customerbase-user');
 Route::post('/cbase/upload', [CbaseController::class, 'upload'])->name('customerbase.modal-upload');
 
 // Resource Routes
 Route::get('/resource', [ResourceController::class,'showResource'])->name('resource');
+Route::get('/resource-user', [ResourceController::class,'showResourceUser'])->name('resource-user');
 Route::post('/resource/upload', [ResourceController::class, 'upload'])->name('resource.modal-upload');
 
 // Dashboard Routes
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+Route::get('/dashboard-user', [DashboardController::class, 'showDashboardUser'])->name('dashboard-user');
 
 // Opportunity Routes
 Route::get('/opportunity', [OpportunityController::class, 'showOpportunity'])->name('opportunity');
+Route::get('/opportunity-user', [OpportunityController::class, 'showOpportunityUser'])->name('opportunity-user');
 Route::post('/opportunity/upload', [OpportunityController::class, 'upload'])->name('opportunity.modal-upload');
 Route::post('/opportunity/update', [OpportunityController::class, 'update'])->name('opportunity.modal-update');

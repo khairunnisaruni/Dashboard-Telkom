@@ -12,6 +12,11 @@ class OpportunityController extends Controller
         return view('opportunity'); 
     }
 
+    public function showOpportunityUser()
+    {
+        return view('user.opportunity-user'); 
+    }
+
     // Menangani upload file CSV/Excel
     public function upload(Request $request)
     {

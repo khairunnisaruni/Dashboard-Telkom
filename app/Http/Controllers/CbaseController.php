@@ -12,6 +12,11 @@ class CbaseController extends Controller
         return view('customerbase'); // pastikan folder view dan nama file benar
     }
 
+    public function showCbaseUser()
+    {
+        return view('user.customerbase-user'); // pastikan folder view dan nama file benar
+    }
+
     public function upload(Request $request)
     {
         $request->validate([

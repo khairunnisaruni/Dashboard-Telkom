@@ -18,12 +18,12 @@
 
 <body class="bg-gray-100 font-sans">
     <div class="flex min-h-screen">
-        @include('partials.sidebar')
+        @include('user.sidebar-user')
 
         <div id="overlay" class="fixed inset-0 bg-black bg-opacity-40 z-20 hidden md:hidden"></div>
 
         <main class="flex-1 flex flex-col">
-            @include('partials.header')
+            @include('user.header-user')
 
             {{-- Konten utama halaman akan disuntikkan di sini --}}
             @yield('content')
@@ -32,9 +32,9 @@
             {{-- Jika ada notifikasi, tampilkan di sini --}}
         </main>
     </div>
-     <!-- @include('partials.footer') -->
+     @include('partials.footer')
 
-    @include('partials.modals')
+    <!-- @include('partials.modals') -->
 
     <script>
         // JavaScript global yang mungkin dibutuhkan oleh partials

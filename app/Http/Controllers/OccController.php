@@ -12,6 +12,11 @@ class OccController extends Controller
         return view('occ'); // pastikan folder view dan nama file benar
     }
 
+    public function showOCCUser()
+    {
+        return view('user.occ-user'); // pastikan folder view dan nama file benar
+    }
+
     public function upload(Request $request)
     {
         $request->validate([

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.app-user')
 
 @section('title', 'Territory - Witel Medan')
 
@@ -21,7 +21,7 @@
                     Sumut</span>
 
                 <div class="flex flex-col md:flex-row md:space-x-4 m-4">
-                    <a href="/territory"
+                    <a href="/territory-user"
                         class="card-button p-4 bg-white shadow-md rounded-lg mb-4 md:mb-0 md:w-1/2 block">
                         <span class="text-xl font-semibold text-red-600">Territory Overview</span>
                         <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
@@ -32,7 +32,7 @@
                     </a>
 
 
-                    <a href="/occ" class="card-button p-4 bg-white shadow-md rounded-lg md:w-1/2 block">
+                    <a href="/occ-user" class="card-button p-4 bg-white shadow-md rounded-lg md:w-1/2 block">
 
                         <span class="text-xl font-semibold text-red-600">OCC and Idle Port</span>
                           <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
@@ -124,7 +124,7 @@
                     </a>
                 </div>
 
-                <a href="/opportunity" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
+                <a href="/opportunity-user" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
                     <span class="text-xl font-semibold text-red-600">Opportunity</span>
                       <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                     <div class="mt-4">
@@ -203,7 +203,7 @@
                     </div>
                 </a>
 
-                <a href="/cbase" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
+                <a href="/cbase-user" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
                     <span class="text-xl font-semibold text-red-600">Customer Base</span>
                       <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                     <div class="mt-4">
@@ -253,7 +253,7 @@
                 </a>
 
 
-                <a href="/resource" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
+                <a href="/resource-user" class="card-button p-4 bg-white shadow-md rounded-lg m-4 block">
                     <span class="text-xl font-semibold text-red-600">Resource</span>
                       <i class="fas fa-arrow-right text-red-600 text-lg ml-2"></i>
                     <div class="overflow-x-auto mt-4">
