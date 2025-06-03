@@ -53,10 +53,10 @@
                     <i class="fas fa-archive"></i><span>Resource</span>
                 </a>
             </li>
-            <li
+            <!-- <li
                 class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer">
                 <i class="fas fa-tasks"></i><span>Plans</span>
-            </li>
+            </li> -->
             <li>
                 <a href="{{ route('about') }}"
                  class="flex items-center gap-3 px-4 py-2 rounded-lg
@@ -64,15 +64,22 @@
                     <i class="fas fa-info-circle"></i><span>About Us</span>
                 </a>
             </li>
-           
-            <li class="py-4"></li>
+            <li>
+                <button type="button"
+                    onclick="document.getElementById('logoutModal').classList.remove('hidden')"
+                    class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer w-full text-left">
+                    <i class="fas fa-sign-out-alt"></i><span>Log Out</span>
+                </button>
+            </li>
+
+            <!-- <li class="py-4"></li>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit"
                     class="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-red-100 hover:font-bold hover:text-red-600 rounded-lg cursor-pointer w-full text-left">
                     <i class="fas fa-sign-out-alt"></i><span>Log Out</span>
                 </button>
-            </form>
+            </form> -->
 
         </ul>
     </nav>
@@ -95,3 +102,30 @@
     });
   });
 </script>
+<!-- Modal Logout -->
+<div id="logoutModal"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white rounded-xl px-8 pt-8 pb-5 shadow-xl text-center relative w-100">
+        <button onclick="document.getElementById('logoutModal').classList.add('hidden')" 
+                class="absolute top-2 right-3 text-xl text-gray-500 hover:text-red-600">&times;</button>
+        <p class="text-lg font-semibold mb-6">Apakah anda yakin ingin keluar?</p>
+        <div class="flex justify-center gap-4">
+   <button onclick="document.getElementById('logoutModal').classList.add('hidden')"
+        class="w-28 border border-red-600 text-red-600 font-semibold py-2 rounded-lg hover:bg-red-100 transition">
+        Batal
+    </button>
+
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit"
+            class="w-28 bg-red-600 text-white font-semibold py-2 rounded-lg hover:bg-red-700 transition">
+            Keluar
+        </button>
+    </form>
+</div>
+
+    </div>
+</div>
+
+
+
