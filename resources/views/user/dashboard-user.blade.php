@@ -53,69 +53,19 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Binjai
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Lubuk
-                                            Pakam
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Siantar
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Inner
-                                            Sumut
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Kabanjahe
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Kisaran
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Padang
-                                            Sidempuan
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Rantau
-                                            Prapat
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Sibolga
-                                        </td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">Toba</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">60.78%</td>
-                                        <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">1000</td>
-                                    </tr>
+                                    @if (empty($occData) || is_null($occData))
+                                        <tr>
+                                            <td colspan="4" class="text-center px-5 py-3 text-gray-500">Data belum tersedia</td>
+                                        </tr>
+                                    @else
+                                        @foreach ($occData as $row)
+                                        <tr>
+                                            <td class="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">{{ $row['telda'] }}</td>
+                                            <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">{{ $row['occ'] }}</td>
+                                            <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">{{ $row['idle'] }}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
