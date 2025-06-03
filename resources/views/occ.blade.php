@@ -71,18 +71,20 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-800">
-                    @php
-                        $rows = ['Binjai','Lubuk Pakam','Siantar','Inner Sumut','Kabanjahe','Kisaran',
-                                 'Padang Sidempuan','Rantau Prapat','Sibolga','Toba'];
-                    @endphp
-                    @foreach ($rows as $row)
-                    <tr class="hover:bg-gray-50 border-b border-gray-300">
-                        <td class="px-5 py-3 font-semibold">{{ $row }}</td>
-                        <td class="px-5 py-3">60.78%</td>
-                        <td class="px-5 py-3">1000</td>
-                        <td class="px-5 py-3 text-gray-500">24/02/2024 00:00</td>
-                    </tr>
-                    @endforeach
+                    @if (empty($occData) || is_null($occData))
+                        <tr>
+                            <td colspan="4" class="text-center px-5 py-3 text-gray-500">Data belum tersedia</td>
+                        </tr>
+                    @else
+                        @foreach ($occData as $row)
+                        <tr class="hover:bg-gray-50 border-b border-gray-300">
+                            <td class="px-5 py-3 font-semibold">{{ $row['telda'] }}</td>
+                            <td class="px-5 py-3">{{ $row['occ'] }}</td>
+                            <td class="px-5 py-3">{{ $row['idle'] }}</td>
+                            <td class="px-5 py-3 text-gray-500">{{ $row['updated'] }}</td>
+                        </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
    public function showDashboard()
     {
-        return view('dashboard');
+        $occData = Cache::get('occ_data', []);
+        return view('dashboard', ['occData' => $occData]);
     }
 
     public function showDashboardUser()
     {
-        return view('user.dashboard-user');
+        $occData = Cache::get('occ_data', []);
+        return view('user.dashboard-user', ['occData' => $occData]);
     }
 }
