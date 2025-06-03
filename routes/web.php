@@ -6,10 +6,9 @@ use App\Http\Controllers\TerritoryController;
 use App\Http\Controllers\OCCController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OpportunityController;
 use App\Http\Controllers\CbaseController;
 use App\Http\Controllers\AboutController;
-use Illuminate\Support\Facades\Auth;
-
 
 Route::get('/', function() {
     return redirect('/login');
@@ -25,7 +24,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 Route::get('/forgot', [AuthController::class, 'showforgotForm'])->name('forgot'); // Halaman forgot
 Route::post('/forgot', [AuthController::class, 'forgot'])->name('forgot.process');
 
-Route::post('/updateName', [AuthController::class, 'updateName'])->name('updateName')->middleware('auth');
+Route::post('/updateProfile', [AuthController::class, 'updateProfile'])->name('updateProfile')->middleware('auth');
 
 Route::get('/tes', [AuthController::class,'showTes'])->name('tes'); // Halaman tes
 
@@ -51,3 +50,8 @@ Route::post('/resource/upload', [ResourceController::class, 'upload'])->name('re
 
 // Dashboard Routes
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+
+// Opportunity Routes
+Route::get('/opportunity', [OpportunityController::class, 'showOpportunity'])->name('opportunity');
+Route::post('/opportunity/upload', [OpportunityController::class, 'upload'])->name('opportunity.modal-upload');
+Route::post('/opportunity/update', [OpportunityController::class, 'update'])->name('opportunity.modal-update');

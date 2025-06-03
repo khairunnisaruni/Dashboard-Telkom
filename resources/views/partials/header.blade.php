@@ -41,8 +41,8 @@
             </div>
         </div>
 
-        <button id="profileBtn" class="w-10 md:w-12 h-auto" aria-label="Profile">
-            <img src="{{ asset('assets/img/profile.png') }}" alt="Profile" />
+        <button id="profileBtn" class="w-10 md:w-12 h-10 md:h-12 overflow-hidden rounded-full border border-gray-300" aria-label="Profile">
+            <img src="{{ Auth::check() && Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('assets/img/profile.png') }}" alt="Profile" class="w-full h-full object-cover object-center" />
         </button>
         <div class="hidden md:flex items-center space-x-4">
             @if (Auth::check())

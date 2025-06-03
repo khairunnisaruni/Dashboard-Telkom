@@ -3,39 +3,46 @@
         <button id="closeProfileModal"
             class="absolute top-4 right-4 text-2xl text-gray-600 hover:text-red-600">&times;</button>
         <h2 class="text-2xl font-bold mb-6">Profile Saya</h2>
-        <div class="flex flex-col items-center justify-center mb-6">
-            <label for="profilePhotoInput" class="cursor-pointer">
-                <img id="profilePhotoPreview" src="{{ asset('assets/img/profile.png') }}" alt="Profile Photo"
-                    class="w-24 h-24 rounded-full object-cover border-2 border-red-600" />
-            </label>
-            <input type="file" id="profilePhotoInput" accept="image/*" class="hidden" 
-                @if (!Auth::check()) disabled  @endif />
-            <p class="text-sm text-gray-500 mt-2">Klik foto untuk upload</p>
-        </div>
-        <div class="space-y-4">
-            <form method="POST" action="{{ route('updateName') }}">
-                @csrf
+
+        <form method="POST" action="{{ route('updateProfile') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="flex flex-col items-center justify-center mb-6">
+                <label for="profilePhotoInput" class="cursor-pointer">
+                    <img id="profilePhotoPreview" 
+                         src="{{ Auth::check() && Auth::user()->profile_picture ? asset('storage/' . Auth::user()->profile_picture) : asset('assets/img/profile.png') }}"
+                         alt="Profile Photo"
+                         class="w-24 h-24 rounded-full object-cover object-center border-2 border-red-600" />
+                </label>
+                <input type="file" id="profilePhotoInput" name="profile_pic" accept="image/*" class="hidden"
+                    @if (!Auth::check()) disabled @endif />
+                <p class="text-sm text-gray-500 mt-2">Klik foto untuk upload</p>
+            </div>
+
+            <div class="space-y-4">
                 <div>
                     <label for="name" class="block text-sm font-semibold text-red-600 mb-1">Nama Lengkap</label>
-                    <input type="text" id="name" name="name" value="{{ Auth::check() ? Auth::user()->name : 'Guest' }}"
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-red-400 @if (!Auth::check()) cursor-not-allowed disabled:bg-gray-100 text-gray-500 @endif" 
-                        @if (!Auth::check()) disabled @endif />
+                    <input type="text" id="name" name="name" 
+                           value="{{ Auth::check() ? Auth::user()->name : 'Guest' }}"
+                           class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-red-400 @if (!Auth::check()) cursor-not-allowed disabled:bg-gray-100 text-gray-500 @endif"
+                           @if (!Auth::check()) disabled @endif />
                 </div>
                 <div>
-                <label for="email" class="block text-sm font-semibold text-red-600 mb-1">Email</label>
-                <input type="email" id="email" value="{{ Auth::check() ? Auth::user()->email : 'No Email' }}"
-                    class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-500 cursor-not-allowed"
-                    disabled />
+                    <label for="email" class="block text-sm font-semibold text-red-600 mb-1">Email</label>
+                    <input type="email" id="email"
+                           value="{{ Auth::check() ? Auth::user()->email : 'No Email' }}"
+                           class="w-full px-4 py-2 border rounded-md bg-gray-100 text-gray-500 cursor-not-allowed"
+                           disabled />
                 </div>
-                <div class="flex justify-end pt-4">
-                    <button type="submit"
+            </div>
+
+            <div class="flex justify-end pt-4">
+                <button type="submit"
                         class="bg-red-700 hover:bg-red-800 text-white font-semibold px-6 py-2 rounded-full @if (!Auth::check()) cursor-not-allowed disabled:bg-gray-500 @endif"
                         @if (!Auth::check()) disabled @endif >
-                        Simpan Perubahan
-                    </button>
-                </div>
-            </form>
-        </div>
+                    Simpan Perubahan
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 

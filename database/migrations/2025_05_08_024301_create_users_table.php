@@ -9,11 +9,13 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id(); // Kolom ID
-            $table->string('name'); // Kolom untuk nama
-            $table->string('email')->unique(); // Kolom untuk email (unik)
-            $table->string('password'); // Kolom untuk password
-            $table->timestamps(); // Kolom untuk created_at dan updated_at
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->boolean('is_admin')->default(0);
+            $table->string('profile_picture')->nullable();
+            $table->timestamps();
         });
     }
 
