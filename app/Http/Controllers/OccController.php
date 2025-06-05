@@ -9,7 +9,7 @@ use App\Models\Upload;
 
 class OccController extends Controller
 {
-    public function showOCC()
+    public function showOCC(Request $request)
     {
         if (!Cache::has('occ_data')) {
             $latest = Upload::where('type', 'occ')->latest()->first();
@@ -18,11 +18,11 @@ class OccController extends Controller
             }
         }
 
-        $occData = Cache::get('occ_data', []);
+        $occData = $this->filterAndSortOCC(Cache::get('occ_data', []), $request);
         return view('occ', ['occData' => $occData]);
     }
 
-    public function showOCCUser()
+    public function showOCCUser(Request $request)
     {
         if (!Cache::has('occ_data')) {
             $latest = Upload::where('type', 'occ')->latest()->first();
@@ -31,8 +31,35 @@ class OccController extends Controller
             }
         }
 
-        $occData = Cache::get('occ_data', []);
+        $occData = $this->filterAndSortOCC(Cache::get('occ_data', []), $request);
         return view('user.occ-user', ['occData' => $occData]);
+    }
+
+    private function filterAndSortOCC(array $data, Request $request)
+    {
+        // Search by telda
+        if ($request->filled('search')) {
+            $search = strtolower($request->get('search'));
+            $data = array_filter($data, function ($item) use ($search) {
+                return str_contains(strtolower($item['telda']), $search);
+            });
+        }
+
+        // Filter by type
+        if ($request->get('filter') === 'occ') {
+            $data = array_filter($data, fn($item) => $item['occ'] > 0);
+        } elseif ($request->get('filter') === 'idle') {
+            $data = array_filter($data, fn($item) => $item['idle'] > 0);
+        }
+
+        // Sort by occ
+        if ($request->get('sort') === 'asc') {
+            usort($data, fn($a, $b) => $a['occ'] <=> $b['occ']);
+        } elseif ($request->get('sort') === 'desc') {
+            usort($data, fn($a, $b) => $b['occ'] <=> $a['occ']);
+        }
+
+        return $data;
     }
 
     public function upload(Request $request)
@@ -45,7 +72,7 @@ class OccController extends Controller
                     $allowedExtensions = ['csv', 'xlsx', 'xls'];
                     $extension = strtolower($value->getClientOriginalExtension());
                     if (!in_array($extension, $allowedExtensions)) {
-                        $fail('The '.$attribute.' must be a file of type: csv, xlsx, xls.');
+                        $fail('The ' . $attribute . ' must be a file of type: csv, xlsx, xls.');
                     }
                 },
             ],
@@ -61,9 +88,7 @@ class OccController extends Controller
             'file_path' => $path,
         ]);
 
-        if (Cache::has('occ_data')) {
-            Cache::forget('occ_data');
-        }
+        Cache::forget('occ_data');
 
         return redirect()->back()->with('success', 'File berhasil diupload');
     }

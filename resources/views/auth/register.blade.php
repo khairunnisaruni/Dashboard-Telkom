@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Witel Medan</title>
+    <title>Register Dashboard Witel Sumut</title>
     @vite('resources/css/app.css') {{-- Tailwind CSS --}}
 </head>
 
