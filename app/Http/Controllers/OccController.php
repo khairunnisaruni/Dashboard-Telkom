@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Jobs\ProcessOCCData;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Upload;
 
 class OccController extends Controller
@@ -77,6 +78,12 @@ class OccController extends Controller
                 },
             ],
         ]);
+
+        $oldUpload = Upload::where('type', 'occ')->latest()->first();
+        if ($oldUpload && Storage::exists($oldUpload->file_path)) {
+            Storage::delete($oldUpload->file_path);
+            // $oldUpload->delete(); // Optional: remove DB entry too
+        }
 
         $file = $request->file('file');
         $filename = time() . '_' . $file->getClientOriginalName();
