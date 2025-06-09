@@ -63,8 +63,9 @@ class OccController extends Controller
         return $data;
     }
 
-    public function upload(Request $request)
-    {
+   public function upload(Request $request)
+{
+    try {
         $request->validate([
             'file' => [
                 'required',
@@ -73,30 +74,33 @@ class OccController extends Controller
                     $allowedExtensions = ['csv', 'xlsx', 'xls'];
                     $extension = strtolower($value->getClientOriginalExtension());
                     if (!in_array($extension, $allowedExtensions)) {
-                        $fail('The ' . $attribute . ' must be a file of type: csv, xlsx, xls.');
+                        $fail('File yang dimasukkan tidak sesuai. Hanya diperbolehkan: csv, xlsx, xls.');
                     }
                 },
             ],
         ]);
-
-        $oldUpload = Upload::where('type', 'occ')->latest()->first();
-        if ($oldUpload && Storage::exists($oldUpload->file_path)) {
-            Storage::delete($oldUpload->file_path);
-            // $oldUpload->delete(); // Optional: remove DB entry too
-        }
-
-        $file = $request->file('file');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('uploads/occ', $filename);
-
-        Upload::create([
-            'type' => 'occ',
-            'file_name' => $filename,
-            'file_path' => $path,
-        ]);
-
-        Cache::forget('occ_data');
-
-        return redirect()->back()->with('success', 'File berhasil diupload');
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        return redirect()->back()->withErrors($e->validator)->with('error', 'File yang dimasukkan tidak sesuai');
     }
+
+    $oldUpload = Upload::where('type', 'occ')->latest()->first();
+    if ($oldUpload && Storage::exists($oldUpload->file_path)) {
+        Storage::delete($oldUpload->file_path);
+        // $oldUpload->delete(); // Optional: remove DB entry too
+    }
+
+    $file = $request->file('file');
+    $filename = time() . '_' . $file->getClientOriginalName();
+    $path = $file->storeAs('uploads/occ', $filename);
+
+    Upload::create([
+        'type' => 'occ',
+        'file_name' => $filename,
+        'file_path' => $path,
+    ]);
+
+    Cache::forget('occ_data');
+
+    return redirect()->back()->with('success', 'File berhasil diupload');
+}
 }

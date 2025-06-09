@@ -9,7 +9,14 @@
 
     {{-- Main content --}}
     <main class="flex-1 flex flex-col pt-24 md:ml-64 md:pt-16 p-6" 
-          x-data="{ showOpportunityModal: false, showSimpanModal: false, showSimpanBerhasilModal: false, editMode: false, showHapusModal: false, showHapusBerhasilModal: false, showEditOpportunityModal : false }">
+          x-data="{  showOpportunityModal: false, 
+                    showSimpanModal: false, 
+                    showSimpanBerhasilModal: false, 
+                    editMode: false, 
+                    showHapusModal: false, 
+                    showHapusBerhasilModal: false, 
+                    showEditOpportunityModal : false,
+                    selectedId: null }">
 
      
         {{-- Judul halaman --}}
@@ -76,7 +83,7 @@
             </div>
         </div>
 
-        {{-- Table --}}
+       {{-- Table --}}
         <div class="overflow-x-auto">
             <table class="min-w-full border-collapse border border-gray-300 text-sm text-left bg-white">
                 <thead>
@@ -89,47 +96,60 @@
                     </tr>
                 </thead>
                 <tbody class="text-gray-800">
-                    @php
-                        $data = [
-                            ['Ruko', 'Binjai', 1049, '24/02/2024 00:00'],
-                            ['Sekolah', 'Lubuk Pakam', 1050, '24/02/2024 00:00'],
-                            ['Hotel', 'Siantar', 1048, '24/02/2024 00:00'],
-                            ['Health', 'Inner Sumut', 1048, '24/02/2024 00:00'],
-                            ['Manufacture', 'Kabanjahe', 1048, '24/02/2024 00:00'],
-                            ['Agrikultur', 'Kisaran', 1048, '24/02/2024 00:00'],
-                            ['Media & Comm', 'Padang Sidempuan', 1048, '24/02/2024 00:00'],
-                            ['Ekpedisi', 'Rantau Prapat', 1048, '24/02/2024 00:00'],
-                            ['Multifinance', 'Sibolga', 1048, '24/02/2024 00:00'],
-                            ['Property', 'Toba', 1048, '24/02/2024 00:00'],
-                            ['Enegry', 'Inner Sumut', 1048, '24/02/2024 00:00'],
-                        ];
-                    @endphp
-
-                    @foreach ($data as $row)
+                    @forelse ($data as $row)
                     <tr class="hover:bg-gray-50 border-b border-gray-300">
-                        <td class="px-5 py-3 font-semibold whitespace-nowrap">{{ $row[0] }}</td>
-                        <td class="px-5 py-3 whitespace-nowrap">{{ $row[1] }}</td>
-                        <td class="px-5 py-3 font-bold whitespace-nowrap">{{ $row[2] }}</td>
-                        <td class="px-5 py-3 text-gray-500 whitespace-nowrap">{{ $row[3] }}</td>
+                        <td class="px-5 py-3 font-semibold whitespace-nowrap">{{ $row->kategori ?? '-' }}</td>
+                        <td class="px-5 py-3 whitespace-nowrap">{{ $row->wilayah ?? '-' }}</td>
+                        <td class="px-5 py-3 font-bold whitespace-nowrap">{{ $row->jumlah ?? 0 }}</td>
+                        <td class="px-5 py-3 text-gray-500 whitespace-nowrap">{{ \Carbon\Carbon::parse($row->updated_at)->format('d/m/Y H:i') }}</td>
 
-                        <!-- Menambahkan kolom tombol Edit & Hapus, muncul hanya jika editMode aktif -->
+                        <div 
+                        x-data="{
+                            showEditOpportunityModal: false,
+                            selectedData: {
+                                id: null,
+                                kategori: '',
+                                wilayah: '',
+                                nilai: 0
+                            },
+                            initEditOpportunity(data) {
+                                this.selectedData = { ...data };
+                                this.showEditOpportunityModal = true;
+                            }
+                        }"
+                    >
+                        <!-- Tombol Edit & Hapus jika editMode aktif -->
                         <td class="px-5 py-3 whitespace-nowrap" x-show="editMode" style="display: none;">
-                        <div class="flex space-x-2">
-                            <button @click = "showEditOpportunityModal = true;"
-                                class="w-9 h-9 rounded-lg bg-yellow-400 hover:bg-yellow-500 flex items-center justify-center">
-                            <img src="{{ asset('assets/img/edit-icon.png') }}" alt="Edit" class="w-5 h-5" />
-                            </button>
-                            <button @click = "showHapusModal = true;"
-                                class="w-9 h-9 rounded-lg bg-red-600 hover:bg-red-700 flex items-center justify-center">
-                            <img src="{{ asset('assets/img/delete-icon.png') }}" alt="Hapus" class="w-5 h-5" />
-                            </button>
-                        </div>
+                            <div class="flex space-x-2">
+                                <button @click="
+                                showEditOpportunityModal = true;
+                                initEditOpportunity({ 
+                                    id: {{ $row->id }}, 
+                                    kategori: '{{ $row->kategori }}', 
+                                    wilayah: '{{ $row->wilayah }}', 
+                                    nilai: {{ $row->jumlah }} 
+                                });
+                            "
+                                            class="w-9 h-9 rounded-lg bg-yellow-400 hover:bg-yellow-500 flex items-center justify-center">
+                                    <img src="{{ asset('assets/img/edit-icon.png') }}" alt="Edit" class="w-5 h-5" />
+                                </button>
+                                
+                                <button @click="showHapusModal = true; selectedId = {{ $row->id }}"
+                                    class="w-9 h-9 rounded-lg bg-red-600 hover:bg-red-700 flex items-center justify-center">
+                                    <img src="{{ asset('assets/img/delete-icon.png') }}" alt="Hapus" class="w-5 h-5" />
+                                </button>
+                            </div>
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                    <tr>
+                        <td colspan="5" class="px-5 py-5 text-center text-gray-500">Data belum tersedia</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
+
 
         {{-- Modal Opportunity --}}
         <div 
@@ -209,15 +229,12 @@
                             class="px-6 py-2 border border-black rounded-md font-semibold hover:bg-gray-100 transition">
                             Batal
                         </button>
-                        <button type="button" 
-                            @click="
-                                showOpportunityModal = false;
-                                setTimeout(() => showSimpanModal = true, 150);
-                            "
+                        <button type="submit"
                             class="px-6 py-2 bg-blue-600 text-white rounded-md font-semibold hover:bg-blue-700 transition"
                         >
                             Lanjutkan
                         </button>
+
                     </div>
                 </form>
             </div>
@@ -247,7 +264,7 @@
                 {{-- Subtitle --}}
                 <p class="mb-6 text-gray-700 text-sm font-normal">Perbaharui Nilai Opportunity</p>
 
-                <form method="POST" action="{{ route('opportunity.modal-update') }}" class="space-y-6 text-sm" x-data="dropdownData()">
+                <form method="POST" :action="'/opportunity/' + opportunityId + '/update'" class="space-y-6 text-sm" x-data="dropdownData('{{ old('kategori') }}', '{{ old('wilayah') }}', '{{ old('nilai_lama', 0) }}', {{ old('id', 0) }})" class="space-y-6 text-sm">
                     @csrf
                     @method('PUT')
 
@@ -289,15 +306,22 @@
                                     <li @click="selectItem('wilayah', item)" class="px-3 py-2 cursor-pointer hover:bg-gray-100" x-text="item"></li>
                                 </template>
                             </ul>
-                            <input type="hidden" name="wilayah" :value="selectedWilayah" required />
+                            <input type="hidden" name="wilayah" :value="wilayah" required />
                         </div>
                     </div>
 
                     {{-- Nilai Lama --}}
                     <div>
                         <label for="nilai_lama" class="block font-semibold mb-2">Nilai Sebelumnya :</label>
-                        <input type="number" id="nilai_lama" name="nilai_lama" readonly disabled
-                            class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-gray-600" />
+                       <input 
+                            type="number" 
+                            id="nilai_lama" 
+                            name="nilai_lama" 
+                            :value="nilaiLama" 
+                            readonly 
+                            disabled
+                            class="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 text-gray-600" 
+                        />
                     </div>
 
                     {{-- Nilai Baru --}}
@@ -313,7 +337,7 @@
                             class="px-6 py-2 border border-black rounded-md font-semibold hover:bg-gray-100 transition">
                             Batal
                         </button>
-                        <button type="button" @click="
+                        <button type="submit" @click="
                                 showEditOpportunityModal = false;
                                 setTimeout(() => showSimpanModal = true, 150);
                             "
@@ -349,14 +373,16 @@
 </style>
 
 <script>
-function dropdownData() {
+function dropdownData(kategori = '', wilayah = '', nilaiLama = 0, id = null) {
     return {
         dropdownOpen: {
             kategori: false,
             wilayah: false,
         },
-        selectedKategori: '',
-        selectedWilayah: '',
+        selectedKategori: kategori,
+        selectedWilayah: wilayah,
+        nilaiLama: nilaiLama,
+        opportunityId: id,
         kategoriOptions: ['Ruko', 'Sekolah', 'Hotel', 'Health', 'Manufacture', 'Agrikultur', 'Media & Comm', 'Ekspedisi', 'Multifinance', 'Property', 'Energi'],
         wilayahOptions: ['Binjai', 'Kabanjahe', 'Siantar', 'Toba', 'Sibolga', 'Inner Sumut', 'Lubuk Pakam', 'Kisaran', 'Rantau Prapat', 'Padang Sidempuan'],
         toggleDropdown(name) {
@@ -376,5 +402,6 @@ function dropdownData() {
     }
 }
 </script>
+
 
 @endsection

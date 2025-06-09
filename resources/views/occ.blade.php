@@ -10,6 +10,28 @@
 
         <h1 class="text-3xl font-bold mb-6" style="margin-top: 60px;">OCC & Idle Port</h1>
 
+                    {{-- Alert Sukses --}}
+            @if (session('success'))
+                <div x-data="{ show: true }" x-show="show" 
+                    x-init="setTimeout(() => show = false, 4000)"
+                    class="mb-4 p-4 rounded bg-green-100 text-green-800 border border-green-300 transition duration-500 ease-in-out"
+                    x-transition>
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            {{-- Alert Gagal --}}
+            @if ($errors->has('file'))
+                <div x-data="{ show: true }" x-show="show" 
+                    x-init="setTimeout(() => show = false, 4000)"
+                    class="mb-4 p-4 rounded bg-red-100 text-red-800 border border-red-300 transition duration-500 ease-in-out"
+                    x-transition>
+                    {{ $errors->first('file') }}
+                </div>
+            @endif
+
+
+
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-4">
             {{-- Dropdown Filter --}}
             <div x-data="{ open: false }" class="relative inline-block text-left">

@@ -40,8 +40,10 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::post('/occ/upload', [OCCController::class, 'upload'])->name('occ.modal-upload');
     Route::post('/cbase/upload', [CbaseController::class, 'upload'])->name('customerbase.modal-upload');
     Route::post('/resource/upload', [ResourceController::class, 'upload'])->name('resource.modal-upload');
-    Route::post('/opportunity/upload', [OpportunityController::class, 'upload'])->name('opportunity.modal-upload');
-    Route::post('/opportunity/update', [OpportunityController::class, 'update'])->name('opportunity.modal-update');
+    Route::post('/opportunity/upload', [OpportunityController::class, 'modalUpload'])->name('opportunity.modal-upload');
+    Route::put('/opportunity/{id}/update', [OpportunityController::class, 'update'])->name('opportunity.modal-update');
+    Route::delete('/opportunity/{id}', [OpportunityController::class, 'destroy'])->name('opportunity.destroy');
+
 });
 
 Route::middleware(['auth'])->group(function () {
